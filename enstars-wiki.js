@@ -1,8 +1,11 @@
+function run() {
+
+//////////
+
 const d = document
 
-const tabList = d.querySelector("ul.tabs")
-console.log(tabList)
-
+// const tabList = d.querySelector("ul.tabs")
+// console.log(tabList)
 
 
 function adjustImages() {
@@ -19,11 +22,11 @@ function adjustImages() {
         img.style.width = "auto"
         img.classList.add("story-image")
 
-        console.log("find char name start")
+        // console.log("find char name start")
 
         let charFileName = img.getAttribute("data-image-name")
-        console.log("char file name is...")
-        console.log(charFileName)
+        // console.log("char file name is...")
+        // console.log(charFileName)
 
         let charName = findCharName(charFileName)
 //console.log(`the character name found is ${charName}`)
@@ -37,14 +40,17 @@ function adjustImages() {
         let parentTd = img.parentNode.parentNode.parentNode
         let nextTd = parentTd.nextSibling
 
-        parentTd.style.verticalAlign = "top"
-        nextTd.style.verticalAlign = "top"
+        // parentTd.style.verticalAlign = "top"
+        // nextTd.style.verticalAlign = "top"
 
-        parentTd.style.paddingTop = "1em"
+        // parentTd.style.paddingTop = "1em"
 
-        nextTd.style.fontSize = "1.5em"
-        nextTd.style.lineHeight = "1.2em"
+        // nextTd.style.fontSize = "1.5em"
+        // nextTd.style.lineHeight = "1.2em"
 
+console.log("showing contents")
+        let contents = parentTd.children
+        console.log(contents)
 
 
     })
@@ -89,4 +95,20 @@ function findCharName(file) {
     } //else if other kind of render, card? character? need to double check...
 
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////
 }
