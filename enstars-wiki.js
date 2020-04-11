@@ -1,4 +1,5 @@
 function run() {
+    console.log("script running")
 
 //////////
 
@@ -112,3 +113,4 @@ function findCharName(file) {
 
 //////////
 }
+run()
