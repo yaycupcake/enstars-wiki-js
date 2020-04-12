@@ -42,7 +42,7 @@ function adjustImages() {
         // console.log(charFileName)
 
         let charName = findCharName(charFileName)
-//console.log(`the character name found is ${charName}`)
+        //console.log(`the character name found is ${charName}`)
 
         let nameNode = d.createElement("p")
         nameNode.appendClass = "speaker-name"
@@ -59,14 +59,14 @@ function adjustImages() {
         parentTd.style.fontSize = "1.5em"
         parentTd.style.lineHeight = "1.2em"
 
-console.log("showing contents")
+        // console.log("showing contents")
 
-let dialogueBox = d.createElement("div")
-dialogueBox.classList.add("dialigue-box")
+        let dialogueBox = d.createElement("div")
+        dialogueBox.classList.add("dialigue-box")
 
 
         let contents = d.querySelectorAll(".nextTd > *")
-        console.log(contents)
+        // console.log(contents)
 
         contents.forEach(node => {
             dialogueBox.appendChild(node)
@@ -80,11 +80,11 @@ dialogueBox.classList.add("dialigue-box")
         parentTd.style.alignItems = "flex-start"
         parentTd.style.justifyContent = "flex-start"
 
-let imageDiv = img.parentNode.parentNode
-imageDiv.style.width = "150px"
-imageDiv.style.flex = "0 0 150px"
+        let imageDiv = img.parentNode.parentNode
+        imageDiv.style.width = "150px"
+        imageDiv.style.flex = "0 0 150px"
 
-dialogueBox.style.paddingLeft = "2em"
+        dialogueBox.style.paddingLeft = "2em"
 
     })
 
