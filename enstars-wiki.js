@@ -31,8 +31,8 @@ function adjustImages() {
 
     storyImgs.forEach(img => {
 
-        img.style.height = "150px"
-        img.style.width = "auto"
+        img.style.maxWidth = "100px"
+        img.style.height = "auto"
         img.classList.add("story-image")
 
         // console.log("find char name start")
@@ -54,25 +54,37 @@ function adjustImages() {
         let nextTd = parentTd.nextSibling
         nextTd.classList.add("nextTd")
 
-        // parentTd.style.verticalAlign = "top"
-        // nextTd.style.verticalAlign = "top"
-
-        // parentTd.style.paddingTop = "1em"
-
-        nextTd.style.fontSize = "1.5em"
-        nextTd.style.lineHeight = "1.2em"
+        parentTd.style.verticalAlign = "top"
+        parentTd.style.paddingTop = "1em"
+        parentTd.style.fontSize = "1.5em"
+        parentTd.style.lineHeight = "1.2em"
 
 console.log("showing contents")
+
+let dialogueBox = d.createElement("div")
+dialogueBox.classList.add("dialigue-box")
+
 
         let contents = d.querySelectorAll(".nextTd > *")
         console.log(contents)
 
         contents.forEach(node => {
-            parentTd.appendChild(node)
+            dialogueBox.appendChild(node)
         })
+
+        parentTd.appendChild(dialogueBox)
 
         nextTd.remove()
 
+        parentTd.style.display = "flex"
+        parentTd.style.alignItems = "flex-start"
+        parentTd.style.justifyContent = "flex-start"
+
+let imageDiv = img.parentNode.parentNode
+imageDiv.style.width = "150px"
+imageDiv.style.flex = "0 0 150px"
+
+dialogueBox.style.paddingLeft = "2em"
 
     })
 
