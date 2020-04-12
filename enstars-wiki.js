@@ -176,16 +176,16 @@ function findCharName(file) {
         let name = ""
 
 
-        const parseName = (file) => {
-            if (file.includes(charName)) {
-                name = charName
+        const parseName = (file, chName) => {
+            if (file.includes(chName)) {
+                name = chName
             }
             return name
         }
 
-        charArray.forEach(charName => {
+        charArray.forEach(chName => {
           
-          if (parseName(file)) {
+          if (parseName(file, chName)) {
             console.log(name)
             return name
           }
@@ -193,7 +193,7 @@ function findCharName(file) {
         })
 
 
-
+        return name
 
         // return parseName(file)
 
