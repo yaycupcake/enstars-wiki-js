@@ -50,9 +50,20 @@ function adjustImages() {
         img.insertAdjacentElement("afterend",nameNode)
 
         //select td parent of image
-        let parentTd = img.parentNode.parentNode.parentNode
+        // let parentTd = img.parentNode.parentNode.parentNode
+        let parentTd = img.closest("td")
         let nextTd = parentTd.nextSibling
-        nextTd.classList.add("nextTd")
+        if (nextTd) {
+            nextTd.classList.add("nextTd")
+        } else {
+            return
+        }
+
+        //need to account for edge cases in which
+        //there may be 2 images in one cell
+        //after this loop, find all td with 2 div class=center
+        //with the character images and then appropriately
+        //align them possibly stacked
 
         parentTd.style.verticalAlign = "top"
         parentTd.style.paddingTop = "1em"
