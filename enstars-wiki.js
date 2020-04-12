@@ -84,7 +84,9 @@ const charArray = [
 function adjustImages() {
     console.log("adjusting")
 
-    let storyImgs = d.querySelectorAll("img[data-image-name*='Dialogue Render']")
+    // let storyImgs = d.querySelectorAll("img[data-image-name*='Dialogue Render']")
+
+    let storyImgs = d.querySelectorAll("img[data-image-name*='Render']")
 
     //console.log(storyImgs)
 
@@ -135,6 +137,15 @@ function adjustImages() {
         let dialogueBox = d.createElement("div")
         dialogueBox.classList.add("dialigue-box")
 
+        //also need to account for text content which is not contained in a p tag or other tag for some reason
+
+        let nonParagraphContent = nextTd.textContent
+
+        let newP = d.createElement("p")
+        newP.textContent = nonParagraphContent
+
+        dialogueBox.appendChild(newP)
+
 
         let contents = d.querySelectorAll(".nextTd > *")
         // console.log(contents)
@@ -142,6 +153,10 @@ function adjustImages() {
         contents.forEach(node => {
             dialogueBox.appendChild(node)
         })
+
+
+
+
 
         parentTd.appendChild(dialogueBox)
 
@@ -168,7 +183,7 @@ adjustImages()
 // Function for parsing file names for each character
 
 function findCharName(file) {
-    if (file.includes("Dialogue Render")) {
+    if (file.includes("Render")) {
         //search for string of character's name with if/else statement
         //and return their name without the rest of the filename.
         //console.log(file)
@@ -192,12 +207,7 @@ function findCharName(file) {
 
         })
 
-
         return name
-
-        // return parseName(file)
-
-
 
 
     } //else if other kind of render, card? character? need to double check...
