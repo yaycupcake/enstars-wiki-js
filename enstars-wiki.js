@@ -1,7 +1,19 @@
-// function run() {
-//     console.log("script running")
+// ==UserScript==
+// @name         enstars wiki story test code
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://ensemble-stars.fandom.com/*
+// @grant        none
+// ==/UserScript==
 
+(function() {
+    'use strict';
 //////////
+    
+
+
 
 const d = document
 
@@ -40,18 +52,26 @@ function adjustImages() {
         //select td parent of image
         let parentTd = img.parentNode.parentNode.parentNode
         let nextTd = parentTd.nextSibling
+        nextTd.classList.add("nextTd")
 
         // parentTd.style.verticalAlign = "top"
         // nextTd.style.verticalAlign = "top"
 
         // parentTd.style.paddingTop = "1em"
 
-        // nextTd.style.fontSize = "1.5em"
-        // nextTd.style.lineHeight = "1.2em"
+        nextTd.style.fontSize = "1.5em"
+        nextTd.style.lineHeight = "1.2em"
 
 console.log("showing contents")
-        let contents = parentTd.children
+
+        let contents = d.querySelectorAll(".nextTd > *")
         console.log(contents)
+
+        contents.forEach(node => {
+            parentTd.appendChild(node)
+        })
+
+        nextTd.remove()
 
 
     })
@@ -112,5 +132,9 @@ function findCharName(file) {
 
 
 //////////
-// }
-// run()
+    // Your code here...
+})();
+
+
+// Below is the file name format for the small circle icons, for reference.
+// [[File:Hokuto Hidaka Circle.png|center|90px]]<br>'''[[Hokuto Hidaka]]
