@@ -173,25 +173,29 @@ function findCharName(file) {
         //and return their name without the rest of the filename.
         //console.log(file)
 
+        let name = ""
+
+
         const parseName = (file) => {
-
-            //console.log(file.includes("Leo Tsukinaga"))
-
-            let name = ""
-
-            if (file.includes("Leo Tsukinaga")) {
-                name = "Leo Tsukinaga"
-            } else if (file.includes("Tsukasa Suou")) {
-                name = "Tsukasa Suou"
-            } else {
-                name = "unknown"
+            if (file.includes(charName)) {
+                name = charName
             }
-
             return name
-
         }
 
-        return parseName(file)
+        charArray.forEach(charName => {
+          
+          if (parseName(file)) {
+            console.log(name)
+            return name
+          }
+
+        })
+
+
+
+
+        // return parseName(file)
 
 
 
