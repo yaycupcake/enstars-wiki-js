@@ -166,6 +166,13 @@ function adjustImages() {
         parentTd.style.alignItems = "flex-start"
         parentTd.style.justifyContent = "flex-start"
 
+
+
+
+        //may need to adjust this part to make sure it
+        //will hit all images even if two or more are
+        //sharing a td initially
+
         let imageDiv = img.parentNode.parentNode
         imageDiv.style.width = "150px"
         imageDiv.style.flex = "0 0 150px"
@@ -211,6 +218,8 @@ function findCharName(file) {
 
 
     } //else if other kind of render, card? character? need to double check...
+    //may not need to do this part bc i just reduced the
+    //requirement for matching to "Render" from "Dialogue Render" but we'll see, it works rn so imma leave it for now... yeah
 
 
 }
@@ -220,7 +229,10 @@ function findCharName(file) {
 
 
 
-
+//still gotta consider how it loads on the pages with tabs
+//potentially have it wait for a tab to load
+//need to check how it functions when js is loaded directly on the wiki and not externally
+//possibly can store a user's preference in localstorage
 
 
 
