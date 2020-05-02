@@ -10,6 +10,7 @@
 
 (function() {
     'use strict';
+
 //////////
 
 
@@ -17,23 +18,83 @@
 
 
 
-
     
-console.log("script is running!");
+console.log("script is running!994235423");
+//anyone reading this just ignore the random numbers lmao
 var d = document;
- 
+
+
+// d.addEventListener("load",respondToPageLoad)
+
+// var tabContainers = d.querySelectorAll(".tabBody");
+    
+// tabContainers.forEach(defineTabBehavior);
+
+// function defineTabBehavior(tab,index,arr) {
+//     tab.addEventListener("DOMNodeInserted",handleTabLoad);
+//     console.log('added listener...');
+// }
+
+// d.querySelectorAll("li[data-tab*='flytabs']").forEach(function(tab){
+//     tab.addEventListener("click",function(){
+//         setTimeout(function(){ alert("Hello"); }, 5000);
+//     });
+// });
+
+// function handleTabLoad() {
+//     console.log("loaded new tab");
+// }
+
+
+
+
+
+
+/////actual working code below.....
+
+
+
+
+
+function jumpToStory() {
+    
+}
+
+
+var jumpButton = d.createElement("button");
+jumpButton.classList.add("jumpButton");
+jumpButton.style.height="75px";
+jumpButton.textContent="Jump to Story";
+jumpButton.addEventListener("click",jumpToStory);
+
+var jumpButtonLink = d.createElement("a");
+jumpButtonLink.href="#flytabs_0-content-wrapper";
+jumpButtonLink.appendChild(jumpButton);
+
+
 var activator = d.createElement("button");
 activator.classList.add("activator");
+activator.style.height = "75px";
 activator.textContent="Activate Theme";
 activator.addEventListener("click",activateTheme);
  
 var body = d.querySelector("body");
 body.appendChild(activator);
+
+
+body.appendChild(jumpButtonLink);
+
  
 body.style.position = "relative";
 activator.style.position = "fixed";
 activator.style.bottom = "0px";
 activator.style.zIndex = "999";
+
+
+jumpButtonLink.style.position="fixed";
+jumpButtonLink.style.bottom="0px";
+jumpButtonLink.style.left="100px";
+jumpButtonLink.style.zIndex="999";
  
 function activateTheme() {
  
@@ -114,6 +175,13 @@ function adjustImages() {
         var nameNode = d.createElement("p");
         nameNode.appendClass = "speaker-name";
         nameNode.textContent = charName;
+
+        if (window.matchMedia("(max-width: 700px)").matches) {
+            nameNode.style.textAlign = "left";
+            nameNode.textContent+=":"
+        }
+
+
         img.insertAdjacentElement("afterend",nameNode);
  
         //select td parent of image
@@ -188,7 +256,12 @@ function adjustImages() {
         parentTd.style.alignItems = "flex-start";
         parentTd.style.justifyContent = "flex-start";
  
- 
+        if (window.matchMedia("(max-width: 700px)").matches) {
+            parentTd.style.flexDirection = "column";
+        }
+        if (window.matchMedia("(min-width: 701px)").matches) {
+            parentTd.style.flexDirection = "row";
+        }
  
  
         //may need to adjust this part to make sure it
@@ -196,12 +269,31 @@ function adjustImages() {
         //sharing a td initially
  
         var imageDiv = img.parentNode.parentNode;
-        imageDiv.style.width = "150px";
-        imageDiv.style.flex = "0 0 150px";
- 
-        dialogueBox.style.paddingLeft = "2em";
+
+        if (window.matchMedia("(min-width: 701px)").matches) {
+            imageDiv.style.width = "150px";
+            imageDiv.style.flex = "0 0 150px";
+            dialogueBox.style.paddingLeft = "2em";
+        }
  
     });
+
+
+
+
+     if (window.matchMedia("(max-width: 700px)").matches) {
+        storyImgs.forEach(function(img) {
+            img.style.display = "none"
+        });
+     }
+
+    if (window.matchMedia("(min-width: 701px)").matches) {
+        storyImgs.forEach(function(img) {
+            img.style.display = "static"
+        });
+     }
+
+
  
 }
  
@@ -309,8 +401,6 @@ function findCharName(file) {
 //at the bottom of the page
 //should look into what's causing it
 //and try to apply a fix...
- 
-
 
 
 
