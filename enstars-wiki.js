@@ -154,10 +154,21 @@ var charArray = [
     "Anzu"
 ];
  
+
+function removeBorders() {
+    var tableCells = d.querySelectorAll(".article-table td")
+    tableCells.forEach(function(cell) {
+        cell.style.border = "none";
+    })
+}
+removeBorders();
+
+
 function adjustImages() {
+
     var storyImgs = d.querySelectorAll("img[data-image-name*='Render']");
  
-    storyImgs.forEach(function(img) {
+    storyImgs.forEach(function(img,index) {
  
         img.style.maxWidth = "100px";
         img.style.height = "auto";
@@ -251,6 +262,26 @@ function adjustImages() {
         parentTd.appendChild(dialogueBox);
  
         nextTd.remove();
+
+
+        var parentRow = parentTd.parentNode;
+        // console.log(parentRow);
+        
+        //make every other row a different background color
+
+        if (index%2 ===0) {
+            parentRow.style.backgroundColor = "rgba(220,220,200,0.5)";
+        } else {
+            parentRow.style.backgroundColor = "rgba(200,200,220,0.5)";
+        }
+
+
+
+//remove borders
+        parentTd.style.border = "none";
+        parentRow.style.border = "none";
+
+
  
         parentTd.style.display = "flex";
         parentTd.style.alignItems = "flex-start";
