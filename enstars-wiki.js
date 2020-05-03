@@ -19,7 +19,7 @@
 
 
     
-console.log("script is running!994235423");
+console.log("script is running!1324213523");
 //anyone reading this just ignore the random numbers lmao
 var d = document;
 
@@ -79,16 +79,17 @@ activator.textContent="Activate Theme";
 activator.addEventListener("click",activateTheme);
  
 var body = d.querySelector("body");
-body.appendChild(activator);
+// body.appendChild(activator);
 
 
 body.appendChild(jumpButtonLink);
 
  
 body.style.position = "relative";
-activator.style.position = "fixed";
-activator.style.bottom = "0px";
-activator.style.zIndex = "999";
+// activator.style.position = "fixed";
+// activator.style.bottom = "0px";
+// activator.style.zIndex = "999";
+activator.style.width = "100%";
 
 
 jumpButtonLink.style.position="fixed";
@@ -96,6 +97,25 @@ jumpButtonLink.style.bottom="0px";
 jumpButtonLink.style.left="100px";
 jumpButtonLink.style.zIndex="999";
  
+
+
+var tabBar = d.querySelector("#flytabs_0");
+
+tabBar.insertAdjacentElement("afterend",activator);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function activateTheme() {
  
 var charArray = [
@@ -156,10 +176,10 @@ var charArray = [
  
 
 function removeBorders() {
-    var tableCells = d.querySelectorAll(".article-table td")
+    var tableCells = d.querySelectorAll(".article-table td");
     tableCells.forEach(function(cell) {
         cell.style.border = "none";
-    })
+    });
 }
 removeBorders();
 
@@ -183,18 +203,32 @@ function adjustImages() {
         var charName = findCharName(charFileName);
         //console.log(`the character name found is ${charName}`)
  
+
+var speakerNameClass = "speaker-name_" + index;
+var speakerNameClassSelector = "." + speakerNameClass;
+
+// var nameCheck = d.querySelector(speakerNameClassSelector);
+// console.log(nameCheck.classList);
+
+// console.log(d.querySelector(speakerNameClassSelector));
+if (!d.querySelector(speakerNameClassSelector)) {
+
         var nameNode = d.createElement("p");
-        nameNode.appendClass = "speaker-name";
+        nameNode.classList.add(speakerNameClass);
         nameNode.textContent = charName;
+
+
 
         if (window.matchMedia("(max-width: 700px)").matches) {
             nameNode.style.textAlign = "left";
-            nameNode.textContent+=":"
+            nameNode.textContent+=":";
         }
-
 
         img.insertAdjacentElement("afterend",nameNode);
  
+
+}
+
         //select td parent of image
         // let parentTd = img.parentNode.parentNode.parentNode
         var parentTd = img.closest("td");
@@ -203,7 +237,7 @@ function adjustImages() {
             nextTd.classList.add("nextTd");
         } else {
             return;
-        };
+        }
  
         //need to account for edge cases in which
         //there may be 2 images in one cell
@@ -314,13 +348,13 @@ function adjustImages() {
 
      if (window.matchMedia("(max-width: 700px)").matches) {
         storyImgs.forEach(function(img) {
-            img.style.display = "none"
+            img.style.display = "none";
         });
      }
 
     if (window.matchMedia("(min-width: 701px)").matches) {
         storyImgs.forEach(function(img) {
-            img.style.display = "static"
+            img.style.display = "static";
         });
      }
 
@@ -353,7 +387,7 @@ function findCharName(file) {
         charArray.forEach(function(chName){
  
           if (parseName(file, chName)) {
-            console.log(name);
+            // console.log(name);
             return name;
           }
  
@@ -443,3 +477,4 @@ function findCharName(file) {
 
 // Below is the file name format for the small circle icons, for reference.
 // [[File:Hokuto Hidaka Circle.png|center|90px]]<br>'''[[Hokuto Hidaka]]
+
