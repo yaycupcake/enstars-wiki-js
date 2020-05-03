@@ -19,7 +19,7 @@
 
 
     
-console.log("script is running!1324213523");
+console.log("script is running!111");
 //anyone reading this just ignore the random numbers lmao
 var d = document;
 
@@ -61,15 +61,12 @@ function jumpToStory() {
 }
 
 
-var jumpButton = d.createElement("button");
-jumpButton.classList.add("jumpButton");
-jumpButton.style.height="75px";
-jumpButton.textContent="Jump to Story";
-jumpButton.addEventListener("click",jumpToStory);
+// var jumpButton = d.createElement("button");
+// jumpButton.classList.add("jumpButton");
+// jumpButton.style.height="75px";
+// jumpButton.textContent="Jump to Story";
+// jumpButton.addEventListener("click",jumpToStory);
 
-var jumpButtonLink = d.createElement("a");
-jumpButtonLink.href="#flytabs_0-content-wrapper";
-jumpButtonLink.appendChild(jumpButton);
 
 
 var activator = d.createElement("button");
@@ -77,12 +74,33 @@ activator.classList.add("activator");
 activator.style.height = "75px";
 activator.textContent="Activate Theme";
 activator.addEventListener("click",activateTheme);
- 
+activator.setAttribute("id","themeJump")
+
+
+var activatorJumpLink = d.createElement("a");
+activatorJumpLink.href="#flytabs_0-content-wrapper";
+activatorJumpLink.appendChild(activator);
+
+
+
+var jumpToTop = d.createElement("button");
+jumpToTop.classList.add("jumpToTop");
+activator.style.height = "75px";
+activator.textContent="Jump To Top";
+
+var jumpToTopLink = d.createElement("a");
+jumpToTopLink.href="#themeJump";
+jumpToTopLink.appendChild(jumpToTop);
+
+
+
+
+
 var body = d.querySelector("body");
 // body.appendChild(activator);
 
 
-body.appendChild(jumpButtonLink);
+// body.appendChild(jumpButtonLink);
 
  
 body.style.position = "relative";
@@ -92,16 +110,18 @@ body.style.position = "relative";
 activator.style.width = "100%";
 
 
-jumpButtonLink.style.position="fixed";
-jumpButtonLink.style.bottom="0px";
-jumpButtonLink.style.left="100px";
-jumpButtonLink.style.zIndex="999";
- 
+// jumpButtonLink.style.position="fixed";
+// jumpButtonLink.style.bottom="0px";
+// jumpButtonLink.style.left="100px";
+// jumpButtonLink.style.zIndex="999";
 
 
+
+// var tabBar = d.querySelector("#flytabs_0-content-wrapper");
 var tabBar = d.querySelector("#flytabs_0");
 
-tabBar.insertAdjacentElement("afterend",activator);
+tabBar.insertAdjacentElement("afterbegin",activatorJumpLink);
+tabBar.insertAdjacentElement("afterend",jumpToTopLink);
 
 
 
