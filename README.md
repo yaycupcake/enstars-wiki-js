@@ -1,5 +1,7 @@
 # enstars-wiki-js
 
+## Current release version is 1.0.0
+
 Some Javascript for the Ensemble Stars Wiki to make it more responsive and modernized, without having to manually edit hundreds to thousands of pages.
 
 ## Features
