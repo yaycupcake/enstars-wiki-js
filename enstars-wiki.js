@@ -19,7 +19,7 @@
 
 
     
-console.log("script is running!111");
+console.log("script is running!111221");
 //anyone reading this just ignore the random numbers lmao
 var d = document;
 
@@ -85,8 +85,8 @@ activatorJumpLink.appendChild(activator);
 
 var jumpToTop = d.createElement("button");
 jumpToTop.classList.add("jumpToTop");
-activator.style.height = "75px";
-activator.textContent="Jump To Top";
+jumpToTop.style.height = "75px";
+jumpToTop.textContent="Jump To Top";
 
 var jumpToTopLink = d.createElement("a");
 jumpToTopLink.href="#themeJump";
@@ -108,6 +108,7 @@ body.style.position = "relative";
 // activator.style.bottom = "0px";
 // activator.style.zIndex = "999";
 activator.style.width = "100%";
+jumpToTop.style.width = "100%";
 
 
 // jumpButtonLink.style.position="fixed";
@@ -118,11 +119,11 @@ activator.style.width = "100%";
 
 
 // var tabBar = d.querySelector("#flytabs_0-content-wrapper");
-var tabBar = d.querySelector("#flytabs_0");
-
-tabBar.insertAdjacentElement("afterbegin",activatorJumpLink);
+var tabBar = d.querySelector(".newStoryTable #flytabs_0");
+if(tabBar){
+tabBar.insertAdjacentElement("beforebegin",activatorJumpLink);
 tabBar.insertAdjacentElement("afterend",jumpToTopLink);
-
+}
 
 
 
@@ -324,9 +325,9 @@ if (!d.querySelector(speakerNameClassSelector)) {
         //make every other row a different background color
 
         if (index%2 ===0) {
-            parentRow.style.backgroundColor = "rgba(220,220,200,0.5)";
+            parentRow.style.backgroundColor = "rgba(220,220,210,0.4)";
         } else {
-            parentRow.style.backgroundColor = "rgba(200,200,220,0.5)";
+            parentRow.style.backgroundColor = "rgba(215,215,220,0.6)";
         }
 
 
