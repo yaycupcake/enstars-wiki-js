@@ -1,92 +1,193 @@
-const d = document
-
-const tabList = d.querySelector("ul.tabs")
-console.log(tabList)
-
-
-
-function adjustImages() {
-    console.log("adjusting")
-
-    let storyImgs = d.querySelectorAll("img[data-image-name*='Dialogue Render']")
-
-    //console.log(storyImgs)
-
-
-    storyImgs.forEach(img => {
-
-        img.style.height = "150px"
-        img.style.width = "auto"
-        img.classList.add("story-image")
-
-        console.log("find char name start")
-
-        let charFileName = img.getAttribute("data-image-name")
-        console.log("char file name is...")
-        console.log(charFileName)
-
-        let charName = findCharName(charFileName)
-//console.log(`the character name found is ${charName}`)
-
-        let nameNode = d.createElement("p")
-        nameNode.appendClass = "speaker-name"
-        nameNode.textContent = charName
-        img.insertAdjacentElement("afterend",nameNode)
-
-        //select td parent of image
-        let parentTd = img.parentNode.parentNode.parentNode
-        let nextTd = parentTd.nextSibling
-
-        parentTd.style.verticalAlign = "top"
-        nextTd.style.verticalAlign = "top"
-
-        parentTd.style.paddingTop = "1em"
-
-        nextTd.style.fontSize = "1.5em"
-        nextTd.style.lineHeight = "1.2em"
-
-
-
-    })
-
+console.log(`Script version 1.0.0 is running!`);
+console.log(`Contact XinChun93 on Twitter if there are any questions or concerns!`);
+console.log(`https://github.com/yaycupcake/enstars-wiki-js`);
+var d = document;
+var activator = d.createElement("button");
+activator.classList.add("activator");
+activator.style.height = "75px";
+activator.textContent = "Activate Theme";
+activator.addEventListener("click", activateTheme);
+activator.setAttribute("id", "themeJump");
+var activatorJumpLink = d.createElement("a");
+activatorJumpLink.href = "#flytabs_0-content-wrapper";
+activatorJumpLink.appendChild(activator);
+var jumpToTop = d.createElement("button");
+jumpToTop.classList.add("jumpToTop");
+jumpToTop.style.height = "75px";
+jumpToTop.textContent = "Jump To Top";
+var jumpToTopLink = d.createElement("a");
+jumpToTopLink.href = "#themeJump";
+jumpToTopLink.appendChild(jumpToTop);
+var body = d.querySelector("body");
+body.style.position = "relative";
+activator.style.width = "100%";
+jumpToTop.style.width = "100%";
+var tabBar = d.querySelector(".newStoryTable #flytabs_0");
+if (tabBar) {
+  tabBar.insertAdjacentElement("beforebegin", activatorJumpLink);
+  tabBar.insertAdjacentElement("afterend", jumpToTopLink);
 }
 
-adjustImages()
+function activateTheme() {
+  var charArray = [
+    "Kohaku Oukawa",
+    "Aira Shiratori",
+    "Tomoya Mashiro",
+    "Yuta Aoi",
+    "Hinata Aoi",
+    "Tori Himemiya",
+    "Hiiro Amagi",
+    "Mitsuru Tenma",
+    "Midori Takamine",
+    "Hajime Shino",
+    "Sora Harukawa",
+    "Tetora Nagumo",
+    "Shinobu Sengoku",
+    "Tsukasa Suou",
+    "Mao Isara",
+    "Arashi Narukami",
+    "Natsume Sakasaki",
+    "Tatsumi Kazehaya",
+    "Mika Kagehira",
+    "Hokuto Hidaka",
+    "Ibara Saegusa",
+    "Yuzuru Fushimi",
+    "Adonis Otogari",
+    "Jun Sazanami",
+    "Koga Oogami",
+    "HiMERU",
+    "Subaru Akehoshi",
+    "Mayoi Ayase",
+    "Makoto Yuuki",
+    "Souma Kanzaki",
+    "Wataru Hibiki",
+    "Kuro Kiryu",
+    "Eichi Tenshouin",
+    "Kaoru Hakaze",
+    "Izumi Sena",
+    "Shu Itsuki",
+    "Nagisa Ran",
+    "Niki Shiina",
+    "Ritsu Sakuma",
+    "Chiaki Morisawa",
+    "Keito Hasumi",
+    "Kanata Shinkai",
+    "Tsumugi Aoba",
+    "Hiyori Tomoe",
+    "Madara Mikejima",
+    "Leo Tsukinaga",
+    "Nazuna Nito",
+    "Rei Sakuma",
+    "Rinne Amagi",
+    "Akiomi Kunugi",
+    "Jin Sagami",
+    "Seiya Hidaka",
+    "Anzu"
+  ];
 
+  function removeBorders() {
+    var tableCells = d.querySelectorAll(".article-table td");
+    tableCells.forEach(function(cell) {
+      cell.style.border = "none";
+    });
+  }
+  removeBorders();
 
-
-// Function for parsing file names for each character
-
-function findCharName(file) {
-    if (file.includes("Dialogue Render")) {
-        //search for string of character's name with if/else statement
-        //and return their name without the rest of the filename.
-        //console.log(file)
-
-        const parseName = (file) => {
-
-            //console.log(file.includes("Leo Tsukinaga"))
-
-            let name = ""
-
-            if (file.includes("Leo Tsukinaga")) {
-                name = "Leo Tsukinaga"
-            } else if (file.includes("Tsukasa Suou")) {
-                name = "Tsukasa Suou"
-            } else {
-                name = "unknown"
-            }
-
-            return name
-
+  function adjustImages() {
+    var storyImgs = d.querySelectorAll("img[data-image-name*='Render']");
+    storyImgs.forEach(function(img, index) {
+      img.style.maxWidth = "100px";
+      img.style.height = "auto";
+      img.classList.add("story-image");
+      var charFileName = img.getAttribute("data-image-name");
+      var charName = findCharName(charFileName);
+      var speakerNameClass = "speaker-name_" + index;
+      var speakerNameClassSelector = "." + speakerNameClass;
+      if (!d.querySelector(speakerNameClassSelector)) {
+        var nameNode = d.createElement("p");
+        nameNode.classList.add(speakerNameClass);
+        nameNode.textContent = charName;
+        if (window.matchMedia("(max-width: 700px)").matches) {
+          nameNode.style.textAlign = "left";
+          nameNode.textContent += ":";
         }
-
-        return parseName(file)
-
-
-
-
-    } //else if other kind of render, card? character? need to double check...
-
-
+        img.insertAdjacentElement("afterend", nameNode);
+      }
+      //select td parent of image
+      var parentTd = img.closest("td");
+      var nextTd = parentTd.nextSibling;
+      if (nextTd) {
+        nextTd.classList.add("nextTd");
+      }
+      else {
+        return;
+      }
+      parentTd.style.verticalAlign = "top";
+      parentTd.style.paddingTop = "1em";
+      parentTd.style.fontSize = "1.5em";
+      parentTd.style.lineHeight = "1.2em";
+      // console.log("showing contents")
+      var dialogueBox = d.createElement("div");
+      dialogueBox.classList.add("dialigue-box");
+      var contents = nextTd.innerHTML;
+      dialogueBox.innerHTML = contents;
+      parentTd.appendChild(dialogueBox);
+      nextTd.remove();
+      var parentRow = parentTd.parentNode;
+      //make every other row a different background color
+      if (index % 2 === 0) {
+        parentRow.style.backgroundColor = "rgba(220,220,210,0.4)";
+      }
+      else {
+        parentRow.style.backgroundColor = "rgba(215,215,220,0.6)";
+      }
+      //remove borders
+      parentTd.style.border = "none";
+      parentRow.style.border = "none";
+      parentTd.style.display = "flex";
+      parentTd.style.alignItems = "flex-start";
+      parentTd.style.justifyContent = "flex-start";
+      if (window.matchMedia("(max-width: 700px)").matches) {
+        parentTd.style.flexDirection = "column";
+      }
+      if (window.matchMedia("(min-width: 701px)").matches) {
+        parentTd.style.flexDirection = "row";
+      }
+      var imageDiv = img.parentNode.parentNode;
+      if (window.matchMedia("(min-width: 701px)").matches) {
+        imageDiv.style.width = "150px";
+        imageDiv.style.flex = "0 0 150px";
+        dialogueBox.style.paddingLeft = "2em";
+      }
+    });
+    if (window.matchMedia("(max-width: 700px)").matches) {
+      storyImgs.forEach(function(img) {
+        img.style.display = "none";
+      });
+    }
+    if (window.matchMedia("(min-width: 701px)").matches) {
+      storyImgs.forEach(function(img) {
+        img.style.display = "static";
+      });
+    }
+  }
+  adjustImages();
+  // Function for parsing file names for each character
+  function findCharName(file) {
+    if (file.includes("Render")) {
+      var name = "";
+      var parseName = function(file, chName) {
+        if (file.includes(chName)) {
+          name = chName;
+        }
+        return name;
+      };
+      charArray.forEach(function(chName) {
+        if (parseName(file, chName)) {
+          return name;
+        }
+      });
+      return name;
+    }
+  }
 }
