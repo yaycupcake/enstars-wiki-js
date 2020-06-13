@@ -1,6 +1,6 @@
-console.log(`Script version 1.0.0 is running!`);
-console.log(`Contact XinChun93 on Twitter if there are any questions or concerns!`);
-console.log(`https://github.com/yaycupcake/enstars-wiki-js`);
+console.log('Script version 1.0.0 is running!');
+console.log('Contact XinChun93 on Twitter if there are any questions or concerns!');
+console.log('https://github.com/yaycupcake/enstars-wiki-js');
 var d = document;
 var activator = d.createElement("button");
 activator.classList.add("activator");
